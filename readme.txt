@@ -37,7 +37,7 @@ The method with which to achieve this is multi-faceted.
 
 Requirements
 ---------------
-*Java 7 
+*Java 8
 @See http://www.java.com/
 
 *Maven 3 

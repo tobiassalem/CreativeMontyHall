@@ -10,7 +10,7 @@ package com.salemcreative;
  */
 public class NumberManager {
 	
-	public static int getRandomIntExlusiveUpperBound(int lowerBound,int upperBound) {
+	public static int getRandomIntExclusiveUpperBound(int lowerBound, int upperBound) {
 		// Classic formula:
 		return lowerBound + (int) (Math.random() * (upperBound - lowerBound));
 		// My simple formula:
@@ -22,11 +22,11 @@ public class NumberManager {
 		//return new Random().nextInt(upperBound+1);
 	}
 	
-	public static double calculatPercentage(int nominator, int denominator) {
-		return calculatPercentage(new Double(nominator), new Double(denominator));
+	public static Double calculatePercentage(int nominator, int denominator) {
+		return calculatePercentage(Double.valueOf(nominator), Double.valueOf(denominator));
 	}
 	
-	public static double calculatPercentage(Double nominator, Double denominator) {
+	public static Double calculatePercentage(Double nominator, Double denominator) {
 		return (nominator / denominator) * 100;
 	}
 	

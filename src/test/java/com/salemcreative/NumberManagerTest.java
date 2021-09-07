@@ -3,12 +3,17 @@ package com.salemcreative;
 import java.util.Random;
 
 import junit.framework.TestCase;
+import org.junit.Test;
 
-public class NumberManagerTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+public class NumberManagerTest {
 	
 	private static final boolean DEBUG_MODE = false;
 	private static final int NR_OF_ITERATIONS = 100;
-	
+
+	@Test
 	public void testRandomIntInclusiveUpperBound() {
 		
 		int lowerBound;
@@ -25,8 +30,9 @@ public class NumberManagerTest extends TestCase {
 			assertTrue(randomIntInclusive <= upperBound);
 		}
 	}
-	
-	public void testRandomIntExlusive() {
+
+	@Test
+	public void testRandomIntExclusive() {
 		int lowerBound;
 		int upperBound;
 		
@@ -34,40 +40,47 @@ public class NumberManagerTest extends TestCase {
 			lowerBound = new Random().nextInt(7);
 			upperBound = lowerBound + new Random().nextInt(10) + 1;
 			
-			int randomIntExclusive = NumberManager.getRandomIntExlusiveUpperBound(lowerBound, upperBound);
+			int randomIntExclusive = NumberManager.getRandomIntExclusiveUpperBound(lowerBound, upperBound);
 			log("randomIntExclusive = " +randomIntExclusive + " given range ["+lowerBound+","+upperBound+"]");
 			
 			assertTrue(randomIntExclusive >=  lowerBound);
 			assertTrue(randomIntExclusive < upperBound);
 		}
 	}
-	
+
+	@Test
 	public void testPercentageInt() {
 		int nominator = 5;
 		int denominator = 10;
-		double percentage = NumberManager.calculatPercentage(nominator, denominator);
-		assertEquals(50.0, percentage);
+		Double expected = 50.0;
+		Double actual = NumberManager.calculatePercentage(nominator, denominator);
+		assertEquals(expected, actual);
 	}
-	
+
+	@Test
 	public void testPercentageDouble() {
 		double nominator = 5;
 		double denominator = 10;
-		double percentage = NumberManager.calculatPercentage(nominator, denominator);
-		assertEquals(50.0, percentage);
+		Double expected = 50.0;
+		Double actual = NumberManager.calculatePercentage(nominator, denominator);
+		assertEquals(expected, actual);
 	}
-	
+
+	@Test
 	public void testPercentageIsInfinite() {
 		double nominator = 5;
 		double denominator = 0;
-		double percentage = NumberManager.calculatPercentage(nominator, denominator);
+		double percentage = NumberManager.calculatePercentage(nominator, denominator);
 		assertTrue(Double.isInfinite(percentage));
 	}
-	
+
+	@Test
 	public void testPercentageIsZero() {
 		double nominator = 0;
 		double denominator = 10;
-		double percentage = NumberManager.calculatPercentage(nominator, denominator);
-		assertEquals(0.0, percentage);
+		Double expected = 0.0;
+		Double actual = NumberManager.calculatePercentage(nominator, denominator);
+		assertEquals(expected, actual);
 	}
 	
 	private void log(String message) {

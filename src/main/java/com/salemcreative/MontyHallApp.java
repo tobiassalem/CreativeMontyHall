@@ -3,6 +3,7 @@ package com.salemcreative;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 /**
  * Simple application to illustrate the Monty Hall problem.
@@ -25,9 +26,9 @@ public class MontyHallApp {
 		MOTIVATE_GAME_CHOICE_EXTENTED("5"),
 		QUIT("6");
 		
-		private String commandKey;
+		private final String commandKey;
 		
-		private AppCommand(String input) {
+		AppCommand(String input) {
 			commandKey = input;
 		}
 		
@@ -39,7 +40,7 @@ public class MontyHallApp {
 					}
 				}
 			}
-			throw new IllegalArgumentException("Given input: " +input+ " is not a valid AppComand.");
+			throw new IllegalArgumentException("Given input: " +input+ " is not a valid AppCommand.");
 		}
 	}
 	
@@ -169,14 +170,12 @@ public class MontyHallApp {
 			System.out.println();
 			System.out.println(MAIN_MENU);
 			System.out.print(PROMPT);
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			final String userInput = readInput();
+
 			try {
-				givenCommand = AppCommand.fromString(reader.readLine());
+				givenCommand = AppCommand.fromString(userInput);
 			} catch(IllegalArgumentException e) {
 				System.out.println(e.getMessage() + " Please review the menu and try again.");
-				continue;
-			} catch (IOException e) {
-				System.err.println("Could not process input. Please try again.");
 				continue;
 			}
 			
@@ -231,7 +230,11 @@ public class MontyHallApp {
 	public static void motivateGameChoiceExtended() {
 		System.out.println(EXTENDED_GAME_CHOICE_MOTIVATION);
 	}
-	
+
+	private static String readInput() {
+		return new Scanner(System.in).nextLine();
+	}
+
 	private static void quitApplication() {
 		System.out.println(FINAL_WORDS);
 		System.exit(0);

@@ -29,11 +29,11 @@ public class GameSessionStatistics {
 	}
 	
 	public double getPercentageWonWithDoorKept() {
-		return NumberManager.calculatPercentage(nrOfGamesWonWithDoorKept,nrOfGamesWithDoorKept);
+		return NumberManager.calculatePercentage(nrOfGamesWonWithDoorKept,nrOfGamesWithDoorKept);
 	}
 	
 	public double getPercentageWonWithDoorSwitched() {
-		return NumberManager.calculatPercentage(nrOfGamesWonWithDoorSwitched,nrOfGamesWithDoorSwitched);
+		return NumberManager.calculatePercentage(nrOfGamesWonWithDoorSwitched,nrOfGamesWithDoorSwitched);
 	}
 	
 	public void reportGameSessionStatistics() {
